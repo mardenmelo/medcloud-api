@@ -1,4 +1,5 @@
 import express from 'express';
+import { SwaggerUiOptions } from 'swagger-ui-express';
 import { patientRoutes } from './routes/patient.routes';
 
 const api = express();

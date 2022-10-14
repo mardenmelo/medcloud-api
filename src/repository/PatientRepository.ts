@@ -1,12 +1,22 @@
 import { CreatePatientDTO } from "../DTO/PatientDTO";
 import { Patient } from "../model/Patient";
+import { IPatientRepository } from "./IPatientRepository";
 
-class PatientRepository {
+class PatientRepository implements IPatientRepository {
 
     private patients: Patient[];
 
-    constructor() {
+    private static INSTANCE: PatientRepository;
+
+    private constructor() {
         this.patients = [];
+    }
+
+    public static getInstance(): PatientRepository {
+        if(!PatientRepository.INSTANCE) {
+            PatientRepository.INSTANCE = new PatientRepository();
+        }
+        return PatientRepository.INSTANCE;
     }
 
     create({
@@ -45,6 +55,11 @@ class PatientRepository {
         return this.patients;
 
     }
+
+    // findByEmail(email: string) {
+    //     const patientEmail = this.patients.find((patientEmail) => patientEmail.email === email);
+    //     return patientEmail;
+    // }
 }
 
 export { PatientRepository };
