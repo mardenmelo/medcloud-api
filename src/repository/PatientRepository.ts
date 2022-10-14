@@ -1,15 +1,16 @@
 import { CreatePatientDTO } from "../DTO/PatientDTO";
-import { Patient } from "../model/Patient";
+import { Patient } from "../entities/Patient";
 import { IPatientRepository } from "./IPatientRepository";
+import { Repository, getRepository } from "typeorm"
 
 class PatientRepository implements IPatientRepository {
 
-    private patients: Patient[];
+    private repository: Repository<Patient>
 
     private static INSTANCE: PatientRepository;
 
     private constructor() {
-        this.patients = [];
+        this.repository = getRepository(Patient)
     }
 
     public static getInstance(): PatientRepository {
@@ -19,40 +20,18 @@ class PatientRepository implements IPatientRepository {
         return PatientRepository.INSTANCE;
     }
 
-    create({
-        id,
-        name,
-        birthDate,
-        email,
-        street,
-        houseNumber,
-        district,
-        city,
-        state,
-        zipCode
-    }: CreatePatientDTO) : void {
+    async create({ id, name, birthDate, email, street, houseNumber, district, city, state, zipCode }: CreatePatientDTO) : Promise<void> {
         
-    const patientData = new Patient();
+    const patient = this.repository.create({ id, name, birthDate, email, street, houseNumber, district, city, state, zipCode });
 
-    Object.assign(patientData, {
-        id,
-        name,
-        birthDate,
-        email,
-        street,
-        houseNumber,
-        district,
-        city,
-        state,
-        zipCode
-    });
+    await this.repository.save(patient);
 
     
-        this.patients.push(patientData);
     }
     
-    list(): Patient[] {
-        return this.patients;
+    async list(): Promise<Patient[]> {
+        const patients = await this.repository.find();
+        return patients
 
     }
 
