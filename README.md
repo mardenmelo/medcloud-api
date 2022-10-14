@@ -1,7 +1,8 @@
-# Awesome Project Build with TypeORM
+# Projeto Desafio MedCloud
 
-Steps to run this project:
+Passos para rodar a api:
 
-1. Run `npm i` command
-2. Setup database settings inside `data-source.ts` file
-3. Run `npm start` command
+1. Execute `npm i ou yarn` para instalar as dependências
+2. Execute o arquivo docker-compose com o comando docker-compose up
+
+Banco de dados utilizado: Postgres
