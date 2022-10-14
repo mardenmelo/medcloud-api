@@ -1,37 +1,37 @@
 import { v4 as uuidV4 } from "uuid";
-import { Entity, PrimaryColumn, Column, CreateDateColumn } from "typeorm";
+import { Entity, PrimaryColumn, Column, CreateDateColumn, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity("patients")
+@Entity("Patient")
 class Patient {
-    @PrimaryColumn()
-    id?: string | undefined;
+    @PrimaryGeneratedColumn("uuid")
+    id?: string;
 
     @Column()
-    name: string | undefined;
+    name: string;
 
     @Column()
-    birthDate: string | undefined;
+    birthDate: string;
 
     @Column()
-    email: string | undefined;
+    email: string;
 
     @Column()
-    street: string | undefined;
+    street: string;
 
     @Column()
-    houseNumber: string | undefined;
+    houseNumber: string;
 
     @Column()
-    district: string | undefined;
+    district: string;
 
     @Column()
-    city: string | undefined;
+    city: string;
 
     @Column()
-    state: string | undefined;
+    state: string;
 
     @Column()
-    zipCode: string | undefined;
+    zipCode: string;
 
     @CreateDateColumn()
     created_at: Date;

@@ -5,7 +5,7 @@ class CreatePatientUseCase {
     constructor(private patientRepository: IPatientRepository) {
     }
 
-    execute({ id, name, birthDate, email, street, houseNumber, district, city, state, zipCode} : CreatePatientDTO) {
+    async execute({ id, name, birthDate, email, street, houseNumber, district, city, state, zipCode} : CreatePatientDTO): Promise<void> {
         
     // const patientEmailExists = this.patientRepository.findByEmail(email);
 
@@ -13,7 +13,7 @@ class CreatePatientUseCase {
     //     throw new Error("Patient already exists");
     // }
 
-    this.patientRepository.create({
+    await this.patientRepository.create({
         id,
         name,
         birthDate,

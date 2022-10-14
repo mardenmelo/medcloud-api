@@ -5,6 +5,7 @@
     "username": "medcloud",
     "password": "6440560",
     "database": "medcloud-api",
+    "entities": ["./src/**/entities/*.ts"],
     "migrations": ["./src/database/migrations/*.ts"],
     "cli": {
       "migrationsDir": "./src/database/migrations"

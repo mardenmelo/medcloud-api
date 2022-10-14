@@ -6,8 +6,8 @@ class ListPatientsUseCase {
 
     }
 
-    execute(): Patient[] {
-        const patients = this.patientRepository.list();
+    async execute(): Promise<Patient[]> {
+        const patients = await this.patientRepository.list();
         return patients;
     }
 }

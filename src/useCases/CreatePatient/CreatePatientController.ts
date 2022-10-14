@@ -6,7 +6,7 @@ class CreatePartientController {
     constructor(private createPatientUseCase: CreatePatientUseCase) {
     };
 
-    handle(request: Request, response: Response) {
+    async handle(request: Request, response: Response): Promise<Response> {
         const {
             id,
             name,
@@ -20,7 +20,7 @@ class CreatePartientController {
             zipCode
         } = request.body;
     
-        this.createPatientUseCase.execute({ id, name, birthDate, email, street, houseNumber, city, district, state, zipCode});
+        await this.createPatientUseCase.execute({ id, name, birthDate, email, street, houseNumber, city, district, state, zipCode});
     
     
         return response.status(201).send();

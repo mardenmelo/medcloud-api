@@ -6,8 +6,8 @@ class ListPatientsController {
 
     }
 
-    handle(request: Request, response: Response) {
-        const allPatients = this.listPatientsUseCase.execute();
+    async handle(request: Request, response: Response): Promise<Response> {
+        const allPatients = await this.listPatientsUseCase.execute();
 
         return response.json(allPatients);
     }

@@ -7,17 +7,8 @@ class PatientRepository implements IPatientRepository {
 
     private repository: Repository<Patient>
 
-    private static INSTANCE: PatientRepository;
-
-    private constructor() {
+    constructor() {
         this.repository = getRepository(Patient)
-    }
-
-    public static getInstance(): PatientRepository {
-        if(!PatientRepository.INSTANCE) {
-            PatientRepository.INSTANCE = new PatientRepository();
-        }
-        return PatientRepository.INSTANCE;
     }
 
     async create({ id, name, birthDate, email, street, houseNumber, district, city, state, zipCode }: CreatePatientDTO) : Promise<void> {
@@ -30,8 +21,8 @@ class PatientRepository implements IPatientRepository {
     }
     
     async list(): Promise<Patient[]> {
-        const patients = await this.repository.find();
-        return patients
+        const patient = await this.repository.find();
+        return patient
 
     }
 
